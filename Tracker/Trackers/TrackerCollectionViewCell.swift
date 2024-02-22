@@ -89,12 +89,19 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
 private extension TrackerCollectionViewCell {
     
     func setupAppearance() {
+        addSubviews()
+        activateConstraints()
+    }
+    
+    func addSubviews() {
         cardView.addSubview(emojiLabel)
         cardView.addSubview(nameLabel)
         contentView.addSubview(cardView)
         contentView.addSubview(completeButton)
         contentView.addSubview(counterLabel)
-        
+    }
+    
+    func activateConstraints() {
         NSLayoutConstraint.activate([
             cardView.topAnchor.constraint(equalTo: contentView.topAnchor),
             cardView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

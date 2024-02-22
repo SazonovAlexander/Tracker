@@ -62,13 +62,19 @@ private extension SelectButtonItemView {
     func setup(text: String) {
         translatesAutoresizingMaskIntoConstraints = false
         textLabel.text = text
+        addSubviews()
+        activateConstraints()
+    }
+    
+    func addSubviews() {
         stack.addArrangedSubview(textLabel)
         stack.addArrangedSubview(selectLabel)
         background.addSubview(stack)
         background.addSubview(arrow)
         addSubview(background)
-        
-        
+    }
+    
+    func activateConstraints() {
         NSLayoutConstraint.activate([
             background.topAnchor.constraint(equalTo: topAnchor),
             background.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -82,5 +88,4 @@ private extension SelectButtonItemView {
             arrow.widthAnchor.constraint(equalToConstant: 24)
         ])
     }
-    
 }

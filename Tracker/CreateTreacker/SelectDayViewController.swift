@@ -64,11 +64,6 @@ final class SelectDayViewController: UIViewController {
     private lazy var daysView: [SwitchDayItemView] = []
     private let selectedDays: [Days]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-    }
-    
     init(selectedDays: [Days]) {
         self.selectedDays = selectedDays
         super.init(nibName: nil, bundle: nil)
@@ -76,6 +71,11 @@ final class SelectDayViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
     }
     
 }
@@ -142,9 +142,3 @@ private extension SelectDayViewController {
         navigationController?.popViewController(animated: true)
     }
 }
-
-
-    
-
-
-
