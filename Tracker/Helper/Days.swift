@@ -1,7 +1,7 @@
 import Foundation
 
 
-enum Days: String {
+enum Days: String, Codable {
     case monday = "Пн"
     case tuesday = "Вт"
     case wednesday = "Ср"
