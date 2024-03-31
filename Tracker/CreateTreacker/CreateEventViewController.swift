@@ -27,7 +27,7 @@ final class CreateEventViewController: UIViewController {
         return label
     }()
     
-    private lazy var nameTextField: TrackerNameTextField = TrackerNameTextField()
+    private lazy var nameTextField: NameTextField = NameTextField(type: NameTextField.Types.tracker)
     
     private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: "Категория", separator: false, topCorner: true, bottomCorner: true)
     
@@ -84,7 +84,6 @@ final class CreateEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedCategoty = TrackerCategory(id: UUID(), name: "Нерегулярные", trackers: [])
         setup()
     }
 }
@@ -164,6 +163,7 @@ private extension CreateEventViewController {
     func addAction() {
         cancelButton.addTarget(self, action: #selector(Self.cancel), for: .touchUpInside)
         createButton.addTarget(self, action: #selector(Self.create), for: .touchUpInside)
+        selectCategoryButton.addTarget(self, action: #selector(Self.selectCategory), for: .touchUpInside)
     }
     
     @objc
@@ -180,6 +180,19 @@ private extension CreateEventViewController {
             delegate?.addTracker(category)
             navigationController?.dismiss(animated: true)
         }
+    }
+    
+    @objc
+    func selectCategory() {
+        let selectCategoryViewController = SelectCategoryViewController()
+        let viewModel = SelectCategoryViewModel()
+        selectCategoryViewController.initialize(viewModel: viewModel)
+        viewModel.selectedCategory = { [weak self] category in
+            self?.selectedCategoty = category
+            self?.selectCategoryButton.setSelectText(category.name)
+            self?.activateButton()
+        }
+        present(selectCategoryViewController, animated: true)
     }
     
     func activateButton() {

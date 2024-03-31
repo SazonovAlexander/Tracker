@@ -1,11 +1,18 @@
 import UIKit
 
 
-final class TrackerNameTextField: UIView {
+final class NameTextField: UIView {
+    
+    enum Types {
+        static let tracker = "трекера"
+        static let category = "категории"
+    }
     
     var validateAction: ((Bool) -> Void)?
     
     private var isValid: Bool = false
+    
+    private let type: String
     
     private lazy var textField: UITextField = {
         let textField = UITextField()
@@ -18,11 +25,6 @@ final class TrackerNameTextField: UIView {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: textField.frame.height))
         textField.leftViewMode = .always
         textField.rightViewMode = .whileEditing
-        textField.attributedPlaceholder = NSAttributedString(
-            string: "Введите название трекера",
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.grayYP,
-                         NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)]
-        )
         return textField
     }()
     
@@ -54,7 +56,8 @@ final class TrackerNameTextField: UIView {
         return stack
     }()
     
-    init() {
+    init(type: String) {
+        self.type = type
         super.init(frame: .zero)
         setup()
     }
@@ -68,11 +71,18 @@ final class TrackerNameTextField: UIView {
     }
 }
 
-private extension TrackerNameTextField {
+private extension NameTextField {
     
     func setup() {
         self.translatesAutoresizingMaskIntoConstraints = false
         textField.rightView = clearButton
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Введите название \(type)",
+            attributes: [
+                NSAttributedString.Key.foregroundColor: UIColor.grayYP,
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)
+            ]
+        )
         
         stack.addArrangedSubview(textField)
         stack.addArrangedSubview(validateLabel)

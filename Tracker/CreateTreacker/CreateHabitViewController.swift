@@ -27,7 +27,7 @@ final class CreateHabitViewController: UIViewController {
         return label
     }()
     
-    private lazy var nameTextField: TrackerNameTextField = TrackerNameTextField()
+    private lazy var nameTextField: NameTextField = NameTextField(type: NameTextField.Types.tracker)
     
     private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: "Категория", separator: true, topCorner: true, bottomCorner: false)
     
@@ -88,7 +88,6 @@ final class CreateHabitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedCategoty = TrackerCategory(id: UUID(), name: "Привычки", trackers: [])
         setup()
     }
 }
@@ -174,6 +173,7 @@ private extension CreateHabitViewController {
         cancelButton.addTarget(self, action: #selector(Self.cancel), for: .touchUpInside)
         selectScheduleButton.addTarget(self, action: #selector(Self.selectSchedule), for: .touchUpInside)
         createButton.addTarget(self, action: #selector(Self.create), for: .touchUpInside)
+        selectCategoryButton.addTarget(self, action: #selector(Self.selectCategory), for: .touchUpInside)
     }
     
     @objc
@@ -181,6 +181,19 @@ private extension CreateHabitViewController {
         let selectDayViewController = SelectDayViewController(selectedDays: schedule)
         selectDayViewController.delegate = self
         navigationController?.pushViewController(selectDayViewController, animated: true)
+    }
+    
+    @objc
+    func selectCategory() {
+        let selectCategoryViewController = SelectCategoryViewController()
+        let viewModel = SelectCategoryViewModel()
+        selectCategoryViewController.initialize(viewModel: viewModel)
+        viewModel.selectedCategory = { [weak self] category in
+            self?.selectedCategoty = category
+            self?.selectCategoryButton.setSelectText(category.name)
+            self?.activateButton()
+        }
+        present(selectCategoryViewController, animated: true)
     }
     
     @objc
