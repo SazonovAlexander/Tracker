@@ -24,13 +24,19 @@
 		0017D6982B76E7F800675168 /* SelectionTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6972B76E7F800675168 /* SelectionTypeViewController.swift */; };
 		0017D69A2B77BF1800675168 /* TrackersViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6992B77BF1800675168 /* TrackersViewControllerProtocol.swift */; };
 		0017D69E2B77D03600675168 /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D69D2B77D03600675168 /* CreateEventViewController.swift */; };
-		0017D6A02B77D3E800675168 /* TrackerNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D69F2B77D3E800675168 /* TrackerNameTextField.swift */; };
+		0017D6A02B77D3E800675168 /* NameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D69F2B77D3E800675168 /* NameTextField.swift */; };
 		0017D6A22B77F85F00675168 /* ItemBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6A12B77F85F00675168 /* ItemBackgroundView.swift */; };
 		0017D6A82B77FCCA00675168 /* SwitchDayItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6A72B77FCCA00675168 /* SwitchDayItemView.swift */; };
 		0017D6AA2B780CB300675168 /* SelectButtonItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6A92B780CB200675168 /* SelectButtonItemView.swift */; };
 		0017D6AC2B781F7800675168 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6AB2B781F7800675168 /* CreateHabitViewController.swift */; };
 		0017D6AE2B794C1900675168 /* SelectDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6AD2B794C1900675168 /* SelectDayViewController.swift */; };
 		0017D6B02B79593700675168 /* CreateHabitViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0017D6AF2B79593700675168 /* CreateHabitViewControllerDelegate.swift */; };
+		00BAE4C32BB8AE65007338DC /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4C22BB8AE65007338DC /* OnboardingPageViewController.swift */; };
+		00BAE4C52BB8AFA8007338DC /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4C42BB8AFA8007338DC /* OnboardingViewController.swift */; };
+		00BAE4C92BB8C439007338DC /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4C82BB8C439007338DC /* SelectCategoryViewController.swift */; };
+		00BAE4CB2BB98D47007338DC /* SelectCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4CA2BB98D47007338DC /* SelectCategoryViewCell.swift */; };
+		00BAE4CD2BB99711007338DC /* SelectCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4CC2BB99711007338DC /* SelectCategoryViewModel.swift */; };
+		00BAE4CF2BB9FB26007338DC /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BAE4CE2BB9FB26007338DC /* CreateCategoryViewController.swift */; };
 		00D4A25D2B910C72008BC7B2 /* Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 00D4A25B2B910C72008BC7B2 /* Tracker.xcdatamodeld */; };
 		00D4A25F2B910E78008BC7B2 /* DaysValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4A25E2B910E78008BC7B2 /* DaysValueTransformer.swift */; };
 		00D4A2872B911991008BC7B2 /* TrackerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4A2862B911991008BC7B2 /* TrackerStore.swift */; };
@@ -62,13 +68,19 @@
 		0017D6972B76E7F800675168 /* SelectionTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTypeViewController.swift; sourceTree = "<group>"; };
 		0017D6992B77BF1800675168 /* TrackersViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackersViewControllerProtocol.swift; sourceTree = "<group>"; };
 		0017D69D2B77D03600675168 /* CreateEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
-		0017D69F2B77D3E800675168 /* TrackerNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerNameTextField.swift; sourceTree = "<group>"; };
+		0017D69F2B77D3E800675168 /* NameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTextField.swift; sourceTree = "<group>"; };
 		0017D6A12B77F85F00675168 /* ItemBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemBackgroundView.swift; sourceTree = "<group>"; };
 		0017D6A72B77FCCA00675168 /* SwitchDayItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchDayItemView.swift; sourceTree = "<group>"; };
 		0017D6A92B780CB200675168 /* SelectButtonItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButtonItemView.swift; sourceTree = "<group>"; };
 		0017D6AB2B781F7800675168 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
 		0017D6AD2B794C1900675168 /* SelectDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDayViewController.swift; sourceTree = "<group>"; };
 		0017D6AF2B79593700675168 /* CreateHabitViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewControllerDelegate.swift; sourceTree = "<group>"; };
+		00BAE4C22BB8AE65007338DC /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		00BAE4C42BB8AFA8007338DC /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		00BAE4C82BB8C439007338DC /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
+		00BAE4CA2BB98D47007338DC /* SelectCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewCell.swift; sourceTree = "<group>"; };
+		00BAE4CC2BB99711007338DC /* SelectCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewModel.swift; sourceTree = "<group>"; };
+		00BAE4CE2BB9FB26007338DC /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
 		00D4A25C2B910C72008BC7B2 /* TrackerDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrackerDataModel.xcdatamodel; sourceTree = "<group>"; };
 		00D4A25E2B910E78008BC7B2 /* DaysValueTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysValueTransformer.swift; sourceTree = "<group>"; };
 		00D4A2862B911991008BC7B2 /* TrackerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerStore.swift; sourceTree = "<group>"; };
@@ -119,6 +131,7 @@
 				0017D6962B76E7BE00675168 /* CreateTreacker */,
 				0017D65E2B75035900675168 /* Trackers */,
 				0017D65B2B75030500675168 /* TabBar */,
+				00BAE4C12BB8AE54007338DC /* OnboardingViewController */,
 				0017D6472B74F41000675168 /* AppDelegate.swift */,
 				0017D6492B74F41000675168 /* SceneDelegate.swift */,
 				0017D6502B74F41100675168 /* Assets.xcassets */,
@@ -181,13 +194,17 @@
 			children = (
 				0017D6972B76E7F800675168 /* SelectionTypeViewController.swift */,
 				0017D69D2B77D03600675168 /* CreateEventViewController.swift */,
-				0017D69F2B77D3E800675168 /* TrackerNameTextField.swift */,
+				0017D69F2B77D3E800675168 /* NameTextField.swift */,
 				0017D6AB2B781F7800675168 /* CreateHabitViewController.swift */,
 				0017D6AD2B794C1900675168 /* SelectDayViewController.swift */,
 				0017D6AF2B79593700675168 /* CreateHabitViewControllerDelegate.swift */,
 				00F578002B8E43E200054F5C /* EmojiCollectionViewCell.swift */,
 				00F578042B8E702E00054F5C /* CollectionViewHeader.swift */,
 				00F578062B8E715F00054F5C /* ColorCollectionViewCell.swift */,
+				00BAE4C82BB8C439007338DC /* SelectCategoryViewController.swift */,
+				00BAE4CA2BB98D47007338DC /* SelectCategoryViewCell.swift */,
+				00BAE4CC2BB99711007338DC /* SelectCategoryViewModel.swift */,
+				00BAE4CE2BB9FB26007338DC /* CreateCategoryViewController.swift */,
 			);
 			path = CreateTreacker;
 			sourceTree = "<group>";
@@ -200,6 +217,15 @@
 				0017D6A92B780CB200675168 /* SelectButtonItemView.swift */,
 			);
 			path = ItemViews;
+			sourceTree = "<group>";
+		};
+		00BAE4C12BB8AE54007338DC /* OnboardingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				00BAE4C22BB8AE65007338DC /* OnboardingPageViewController.swift */,
+				00BAE4C42BB8AFA8007338DC /* OnboardingViewController.swift */,
+			);
+			path = OnboardingViewController;
 			sourceTree = "<group>";
 		};
 		00D4A2832B9113C4008BC7B2 /* CoreData */ = {
@@ -282,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BAE4C52BB8AFA8007338DC /* OnboardingViewController.swift in Sources */,
 				0017D6862B752FAB00675168 /* Tracker.swift in Sources */,
 				0017D6612B7503A800675168 /* StatisticsViewController.swift in Sources */,
 				0017D68B2B75312F00675168 /* TrackerCategory.swift in Sources */,
@@ -291,11 +318,13 @@
 				0017D6B02B79593700675168 /* CreateHabitViewControllerDelegate.swift in Sources */,
 				0017D6632B7503DB00675168 /* TrackersViewController.swift in Sources */,
 				00D4A25D2B910C72008BC7B2 /* Tracker.xcdatamodeld in Sources */,
+				00BAE4C92BB8C439007338DC /* SelectCategoryViewController.swift in Sources */,
 				0017D6952B76B0C200675168 /* TrackerCollectionViewHeader.swift in Sources */,
 				0017D68D2B75315B00675168 /* TrackerRecord.swift in Sources */,
 				00D4A28B2B9119AC008BC7B2 /* TrackerRecordStore.swift in Sources */,
 				0017D6892B75308700675168 /* Days.swift in Sources */,
 				00F578052B8E702E00054F5C /* CollectionViewHeader.swift in Sources */,
+				00BAE4CB2BB98D47007338DC /* SelectCategoryViewCell.swift in Sources */,
 				00D4A25F2B910E78008BC7B2 /* DaysValueTransformer.swift in Sources */,
 				00D4A2872B911991008BC7B2 /* TrackerStore.swift in Sources */,
 				0017D6912B767E3200675168 /* TrackerDate.swift in Sources */,
@@ -305,11 +334,14 @@
 				0017D68F2B766FD400675168 /* TrackerCollectionViewCell.swift in Sources */,
 				00F577FF2B8E438D00054F5C /* UIColor+Extension.swift in Sources */,
 				0017D6482B74F41000675168 /* AppDelegate.swift in Sources */,
+				00BAE4CD2BB99711007338DC /* SelectCategoryViewModel.swift in Sources */,
 				0017D6AE2B794C1900675168 /* SelectDayViewController.swift in Sources */,
+				00BAE4CF2BB9FB26007338DC /* CreateCategoryViewController.swift in Sources */,
 				0017D6A22B77F85F00675168 /* ItemBackgroundView.swift in Sources */,
 				00D4A2892B9119A0008BC7B2 /* TrackerCategoryStore.swift in Sources */,
 				0017D64A2B74F41000675168 /* SceneDelegate.swift in Sources */,
-				0017D6A02B77D3E800675168 /* TrackerNameTextField.swift in Sources */,
+				00BAE4C32BB8AE65007338DC /* OnboardingPageViewController.swift in Sources */,
+				0017D6A02B77D3E800675168 /* NameTextField.swift in Sources */,
 				00F578012B8E43E200054F5C /* EmojiCollectionViewCell.swift in Sources */,
 				0017D6AA2B780CB300675168 /* SelectButtonItemView.swift in Sources */,
 				0017D69E2B77D03600675168 /* CreateEventViewController.swift in Sources */,
