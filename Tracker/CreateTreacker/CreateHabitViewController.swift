@@ -21,7 +21,7 @@ final class CreateHabitViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Новая привычка"
+        label.text = NSLocalizedString("createHabit.title", comment: "Habit creation screen title")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -29,15 +29,15 @@ final class CreateHabitViewController: UIViewController {
     
     private lazy var nameTextField: NameTextField = NameTextField(type: NameTextField.Types.tracker)
     
-    private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: "Категория", separator: true, topCorner: true, bottomCorner: false)
+    private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: NSLocalizedString("category", comment: "Select category button text"), separator: true, topCorner: true, bottomCorner: false)
     
-    private lazy var selectScheduleButton: SelectButtonItemView = SelectButtonItemView(text: "Расписание", separator: false, topCorner: false, bottomCorner: true)
+    private lazy var selectScheduleButton: SelectButtonItemView = SelectButtonItemView(text: NSLocalizedString("createHabit.schedule", comment: "Select schedule button text"), separator: false, topCorner: false, bottomCorner: true)
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.redYP, for: .normal)
-        button.setTitle("Отменить", for: .normal)
+        button.setTitle(NSLocalizedString("cancel", comment: "Cancel button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .whiteYP
         button.layer.cornerRadius = 16
@@ -50,7 +50,7 @@ final class CreateHabitViewController: UIViewController {
     private lazy var createButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Создать", for: .normal)
+        button.setTitle(NSLocalizedString("create", comment: "Create button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .grayYP
         button.layer.cornerRadius = 16
@@ -229,10 +229,10 @@ extension CreateHabitViewController: CreateHabitViewControllerDelegate {
         self.schedule = schedule
         var daysText = ""
         if schedule.count == 7 {
-            daysText = "Каждый день"
+            daysText = NSLocalizedString("everyDay", comment: "Every day")
         }
         else if schedule.count > 0 {
-            schedule.forEach({daysText += "\($0.rawValue), "})
+            schedule.forEach({daysText += "\($0.localizedShortString), "})
             daysText.removeLast(2)
         }
         selectScheduleButton.setSelectText(daysText)
@@ -312,7 +312,7 @@ extension CreateHabitViewController: UICollectionViewDelegateFlowLayout {
             guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CollectionViewHeader.identifier, for: indexPath) as? CollectionViewHeader
             else { return UICollectionReusableView()}
             
-            view.setup(name: "Цвет")
+            view.setup(name: NSLocalizedString("color", comment: "Color"))
             return view
         }
     }

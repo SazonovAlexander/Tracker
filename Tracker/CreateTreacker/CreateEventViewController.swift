@@ -21,7 +21,7 @@ final class CreateEventViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Новое нерегулярное событие"
+        label.text = NSLocalizedString("createEvent.title", comment: "Event creation screen title")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -29,13 +29,13 @@ final class CreateEventViewController: UIViewController {
     
     private lazy var nameTextField: NameTextField = NameTextField(type: NameTextField.Types.tracker)
     
-    private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: "Категория", separator: false, topCorner: true, bottomCorner: true)
+    private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: NSLocalizedString("category", comment: "Select category button text"), separator: false, topCorner: true, bottomCorner: true)
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(.redYP, for: .normal)
-        button.setTitle("Отменить", for: .normal)
+        button.setTitle(NSLocalizedString("cancel", comment: "Cancel button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .whiteYP
         button.layer.cornerRadius = 16
@@ -48,7 +48,7 @@ final class CreateEventViewController: UIViewController {
     private lazy var createButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Создать", for: .normal)
+        button.setTitle(NSLocalizedString("create", comment: "Create button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .grayYP
         button.layer.cornerRadius = 16

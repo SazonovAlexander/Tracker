@@ -69,7 +69,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         emojiLabel.text = tracker.emoji
         cardView.backgroundColor = tracker.color
         completeButton.backgroundColor = tracker.color
-        counterLabel.text = "\(counter) \(counterText(number: counter))"
+        counterLabel.text = String.localizedStringWithFormat(NSLocalizedString("numberOfDays", comment: "Number of days"), Int(counter))
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         let attributedString = NSMutableAttributedString(string: tracker.name)
@@ -131,29 +131,5 @@ private extension TrackerCollectionViewCell {
     func tapCompleteButton() {
         completeButtonAction?()
     }
-    
-    func counterText(number: UInt) -> String {
-        switch number % 10 {
-        case 1:
-            if number < 10 {
-                return "день"
-            }
-            else {
-                return "дней"
-            }
-        case 0, 5, 6, 7, 8, 9:
-            return "дней"
-        case 2, 3, 4:
-            if number % 100 < 10 {
-                return "дня"
-            }
-            else {
-                return "дней"
-            }
-        default:
-            return "дней"
-        }
-    }
-    
 }
 

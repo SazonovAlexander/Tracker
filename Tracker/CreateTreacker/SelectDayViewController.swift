@@ -21,7 +21,7 @@ final class SelectDayViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Расписание"
+        label.text = NSLocalizedString("schedule.title", comment: "Schedule selection screen title")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -30,7 +30,7 @@ final class SelectDayViewController: UIViewController {
     private lazy var readyButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Готово", for: .normal)
+        button.setTitle(NSLocalizedString("ready", comment: "Ready button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .blackYP
         button.layer.cornerRadius = 16
@@ -38,19 +38,19 @@ final class SelectDayViewController: UIViewController {
         return button
     }()
     
-    private lazy var monday: SwitchDayItemView = SwitchDayItemView(day: .monday, text: "Понедельник", separator: true, topCorner: true, bottomCorner: false)
+    private lazy var monday: SwitchDayItemView = SwitchDayItemView(day: .monday, text: Days.monday.localizedString, separator: true, topCorner: true, bottomCorner: false)
     
-    private lazy var tuesday: SwitchDayItemView = SwitchDayItemView(day: .tuesday, text: "Вторник", separator: true, topCorner: false, bottomCorner: false)
+    private lazy var tuesday: SwitchDayItemView = SwitchDayItemView(day: .tuesday, text: Days.tuesday.localizedString, separator: true, topCorner: false, bottomCorner: false)
     
-    private lazy var wednesday: SwitchDayItemView = SwitchDayItemView(day: .wednesday, text: "Среда", separator: true, topCorner: false, bottomCorner: false)
+    private lazy var wednesday: SwitchDayItemView = SwitchDayItemView(day: .wednesday, text: Days.wednesday.localizedString, separator: true, topCorner: false, bottomCorner: false)
     
-    private lazy var thursday: SwitchDayItemView = SwitchDayItemView(day: .thursday, text: "Четверг", separator: true, topCorner: false, bottomCorner: false)
+    private lazy var thursday: SwitchDayItemView = SwitchDayItemView(day: .thursday, text: Days.thursday.localizedString, separator: true, topCorner: false, bottomCorner: false)
     
-    private lazy var friday: SwitchDayItemView = SwitchDayItemView(day: .friday, text: "Пятница", separator: true, topCorner: false, bottomCorner: false)
+    private lazy var friday: SwitchDayItemView = SwitchDayItemView(day: .friday, text: Days.friday.localizedString, separator: true, topCorner: false, bottomCorner: false)
     
-    private lazy var saturday: SwitchDayItemView = SwitchDayItemView(day: .saturday, text: "Суббота", separator: true, topCorner: false, bottomCorner: false)
+    private lazy var saturday: SwitchDayItemView = SwitchDayItemView(day: .saturday, text: Days.saturday.localizedString, separator: true, topCorner: false, bottomCorner: false)
     
-    private lazy var sunday: SwitchDayItemView = SwitchDayItemView(day: .sunday, text: "Воскресенье", separator: false, topCorner: false, bottomCorner: true)
+    private lazy var sunday: SwitchDayItemView = SwitchDayItemView(day: .sunday, text: Days.sunday.localizedString, separator: false, topCorner: false, bottomCorner: true)
     
     private lazy var daysStack: UIStackView = {
         let stack = UIStackView()

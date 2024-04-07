@@ -8,7 +8,7 @@ final class TrackersViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 34, weight: .bold)
         label.textColor = .blackYP
-        label.text = "Трекеры"
+        label.text = NSLocalizedString("trackers", comment: "Trackers")
         return label
     }()
     
@@ -23,7 +23,7 @@ final class TrackersViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .blackYP
-        label.text = "Что будем отслеживать?"
+        label.text = NSLocalizedString("trackers.stub", comment: "Trackers screen stub")
         return label
     }()
     

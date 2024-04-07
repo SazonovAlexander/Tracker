@@ -4,8 +4,8 @@ import UIKit
 final class NameTextField: UIView {
     
     enum Types {
-        static let tracker = "трекера"
-        static let category = "категории"
+        static let tracker = NSLocalizedString("name.tracker", comment: "Entering tracker name")
+        static let category = NSLocalizedString("name.category", comment: "Entering category name")
     }
     
     var validateAction: ((Bool) -> Void)?
@@ -40,7 +40,7 @@ final class NameTextField: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .redYP
         label.font = .systemFont(ofSize: 17, weight: .regular)
-        label.text = "Ограничение 38 символов"
+        label.text = NSLocalizedString("name.constraint", comment: "Entering name constraint")
         label.isHidden = true
         label.textAlignment = .center
         return label
@@ -77,7 +77,7 @@ private extension NameTextField {
         self.translatesAutoresizingMaskIntoConstraints = false
         textField.rightView = clearButton
         textField.attributedPlaceholder = NSAttributedString(
-            string: "Введите название \(type)",
+            string: NSLocalizedString("name.entering", comment: "Entering name text") + type,
             attributes: [
                 NSAttributedString.Key.foregroundColor: UIColor.grayYP,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .regular)

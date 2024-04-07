@@ -9,8 +9,8 @@ final class OnboardingPageViewController: UIPageViewController {
     ]
     
     private let pagesText: [String] = [
-        "Отслеживайте только то, что хотите",
-        "Даже если это не литры воды и йога"
+        NSLocalizedString("onboarding.1", comment: "First onboarding screen text"),
+        NSLocalizedString("onboarding.2", comment: "Second onboarding screen text")
     ]
     
     private lazy var label: UILabel = {
@@ -38,7 +38,7 @@ final class OnboardingPageViewController: UIPageViewController {
     private lazy var button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Вот это технологии!", for: .normal)
+        button.setTitle(NSLocalizedString("onboarding.button", comment: "Onboading screen button text"), for: .normal)
         button.setTitleColor(.whiteYP, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .blackYP
