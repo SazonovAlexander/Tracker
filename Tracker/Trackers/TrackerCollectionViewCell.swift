@@ -53,6 +53,14 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    private let pinImageView: UIImageView = {
+        let imageView = UIImageView(image: .pin)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.zPosition = 2
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     private var completeButtonAction: (() -> Void)?
     
     override init(frame: CGRect) {
@@ -82,6 +90,7 @@ final class TrackerCollectionViewCell: UICollectionViewCell {
             completeButton.setImage(UIImage.plusCompleted.withTintColor(.whiteYP), for: .normal)
             completeButton.alpha = 1
         }
+        pinImageView.isHidden = !tracker.isFixed
         self.completeButtonAction = completeButtonAction
     }
 }
@@ -96,6 +105,7 @@ private extension TrackerCollectionViewCell {
     func addSubviews() {
         cardView.addSubview(emojiLabel)
         cardView.addSubview(nameLabel)
+        cardView.addSubview(pinImageView)
         contentView.addSubview(cardView)
         contentView.addSubview(completeButton)
         contentView.addSubview(counterLabel)
@@ -119,7 +129,11 @@ private extension TrackerCollectionViewCell {
             completeButton.widthAnchor.constraint(equalToConstant: 34),
             completeButton.heightAnchor.constraint(equalToConstant: 34),
             completeButton.centerYAnchor.constraint(equalTo: counterLabel.centerYAnchor),
-            completeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
+            completeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            pinImageView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 12),
+            pinImageView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -12),
+            pinImageView.heightAnchor.constraint(equalToConstant: 24),
+            pinImageView.widthAnchor.constraint(equalToConstant: 24)
         ])
     }
     
@@ -129,6 +143,7 @@ private extension TrackerCollectionViewCell {
     
     @objc
     func tapCompleteButton() {
+        AnalyticManager.shared.report(event: .click, screen: .main, item: .track)
         completeButtonAction?()
     }
 }

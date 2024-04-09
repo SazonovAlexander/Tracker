@@ -27,6 +27,16 @@ final class CreateHabitViewController: UIViewController {
         return label
     }()
     
+    private lazy var countLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 32, weight: .bold)
+        label.textColor = .blackYP
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var nameTextField: NameTextField = NameTextField(type: NameTextField.Types.tracker)
     
     private lazy var selectCategoryButton: SelectButtonItemView = SelectButtonItemView(text: NSLocalizedString("category", comment: "Select category button text"), separator: true, topCorner: true, bottomCorner: false)
@@ -59,6 +69,14 @@ final class CreateHabitViewController: UIViewController {
         return button
     }()
     
+    private lazy var titleStack: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 24
+        return stack
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -72,7 +90,8 @@ final class CreateHabitViewController: UIViewController {
         return collectionView
     }()
     
-    
+    private let countCompletedDays: Int?
+    private let tracker: Tracker?
     private var isValidName = false
     private var selectedCategoty: TrackerCategory?
     private var schedule: [Days] = []
@@ -90,12 +109,41 @@ final class CreateHabitViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
+    
+    init(tracker: Tracker? = nil, category: TrackerCategory? = nil, countCompletedDays: Int? = nil) {
+        self.tracker = tracker
+        self.selectedCategoty = category
+        self.countCompletedDays = countCompletedDays
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 private extension CreateHabitViewController {
     
     func setup() {
         view.backgroundColor = .whiteYP
+        if let tracker,
+           let selectedCategoty,
+           let countCompletedDays {
+            nameTextField.setText(tracker.name)
+            isValidName = true
+            setSchedule(tracker.schedule ?? [])
+            selectCategoryButton.setSelectText(selectedCategoty.name)
+            selectedColor = IndexPath(row: colors.firstIndex(where: {UIColor.colorFromString($0) == tracker.color}) ?? 0, section: 1)
+            selectedEmoji = IndexPath(row: emojies.firstIndex(where: {$0 == tracker.emoji}) ?? 0, section: 0)
+            createButton.setTitle(NSLocalizedString("save", comment: "Button save text"), for: .normal)
+            titleLabel.text = NSLocalizedString("changeHabit.title", comment: "Habit changing screen title")
+            countLabel.isHidden = false
+            countLabel.text = String.localizedStringWithFormat(
+                NSLocalizedString("numberOfDays", comment: "Count days"),
+                countCompletedDays
+            )
+            activateButton()
+        }
         addSubviews()
         activateConstraints()
         setupValidateAction()
@@ -111,13 +159,15 @@ private extension CreateHabitViewController {
     func addSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(titleLabel)
         contentView.addSubview(nameTextField)
         contentView.addSubview(selectCategoryButton)
         contentView.addSubview(cancelButton)
         contentView.addSubview(createButton)
         contentView.addSubview(selectScheduleButton)
         contentView.addSubview(collectionView)
+        contentView.addSubview(titleStack)
+        titleStack.addArrangedSubview(titleLabel)
+        titleStack.addArrangedSubview(countLabel)
     }
     
     func activateConstraints() {
@@ -131,10 +181,12 @@ private extension CreateHabitViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 15),
-            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleStack.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 15),
+            titleStack.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 42),
-            nameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 24),
+            countLabel.heightAnchor.constraint(equalToConstant: 38),
+            nameTextField.topAnchor.constraint(equalTo: titleStack
+                .bottomAnchor, constant: 40),
             nameTextField.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             nameTextField.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             selectCategoryButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 24),
@@ -172,7 +224,7 @@ private extension CreateHabitViewController {
     func addAction() {
         cancelButton.addTarget(self, action: #selector(Self.cancel), for: .touchUpInside)
         selectScheduleButton.addTarget(self, action: #selector(Self.selectSchedule), for: .touchUpInside)
-        createButton.addTarget(self, action: #selector(Self.create), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(Self.change), for: .touchUpInside)
         selectCategoryButton.addTarget(self, action: #selector(Self.selectCategory), for: .touchUpInside)
     }
     
@@ -197,14 +249,26 @@ private extension CreateHabitViewController {
     }
     
     @objc
-    func create() {
-        if let selectedCategoty {
-            var trackers = selectedCategoty.trackers
-            trackers.append(Tracker(id: UUID(), name: nameTextField.getText(), color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP, emoji: emojies[selectedEmoji?.row ?? 0], schedule: schedule))
-            let category = TrackerCategory(id: selectedCategoty.id, name: selectedCategoty.name, trackers: trackers)
-            delegate?.addTracker(category)
-            navigationController?.dismiss(animated: true)
+    func change() {
+        if let tracker {
+            let newTracker = Tracker(
+                id: tracker.id,
+                name: nameTextField.getText(),
+                color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP,
+                emoji: emojies[selectedEmoji?.row ?? 0],
+                schedule: schedule,
+                isFixed: tracker.isFixed
+            )
+            delegate?.changeTracker(newTracker)
+        } else {
+            if let selectedCategoty {
+                var trackers = selectedCategoty.trackers
+                trackers.append(Tracker(id: UUID(), name: nameTextField.getText(), color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP, emoji: emojies[selectedEmoji?.row ?? 0], schedule: schedule, isFixed: false))
+                let category = TrackerCategory(id: selectedCategoty.id, name: selectedCategoty.name, trackers: trackers)
+                delegate?.addTracker(category)
+            }
         }
+        navigationController?.dismiss(animated: true)
     }
     
     @objc

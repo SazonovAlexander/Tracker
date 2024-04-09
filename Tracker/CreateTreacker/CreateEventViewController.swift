@@ -70,6 +70,7 @@ final class CreateEventViewController: UIViewController {
         return collectionView
     }()
     
+    private let tracker: Tracker?
     private var isValidName = false
     private var selectedCategoty: TrackerCategory?
     private var selectedEmoji: IndexPath?
@@ -86,12 +87,33 @@ final class CreateEventViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
+    
+    init(tracker: Tracker? = nil, category: TrackerCategory? = nil) {
+        self.tracker = tracker
+        self.selectedCategoty = category
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 private extension CreateEventViewController {
     
     func setup() {
         view.backgroundColor = .whiteYP
+        if let tracker,
+           let selectedCategoty {
+            nameTextField.setText(tracker.name)
+            isValidName = true
+            selectCategoryButton.setSelectText(selectedCategoty.name)
+            selectedColor = IndexPath(row: colors.firstIndex(where: {UIColor.colorFromString($0) == tracker.color}) ?? 0, section: 1)
+            selectedEmoji = IndexPath(row: emojies.firstIndex(where: {$0 == tracker.emoji}) ?? 0, section: 0)
+            createButton.setTitle(NSLocalizedString("save", comment: "Button save text"), for: .normal)
+            titleLabel.text = NSLocalizedString("changeEvent.title", comment: "Habit changing screen title")
+            activateButton()
+        }
         addSubviews()
         activateConstraints()
         setupValidateAction()
@@ -162,7 +184,7 @@ private extension CreateEventViewController {
     
     func addAction() {
         cancelButton.addTarget(self, action: #selector(Self.cancel), for: .touchUpInside)
-        createButton.addTarget(self, action: #selector(Self.create), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(Self.change), for: .touchUpInside)
         selectCategoryButton.addTarget(self, action: #selector(Self.selectCategory), for: .touchUpInside)
     }
     
@@ -172,13 +194,26 @@ private extension CreateEventViewController {
     }
     
     @objc
-    func create() {
-        if let selectedCategoty {
-            var trackers = selectedCategoty.trackers
-            trackers.append(Tracker(id: UUID(), name: nameTextField.getText(), color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP, emoji: emojies[selectedEmoji?.row ?? 0], schedule: nil))
-            let category = TrackerCategory(id: selectedCategoty.id, name: selectedCategoty.name, trackers: trackers)
-            delegate?.addTracker(category)
+    func change() {
+        if let tracker {
+            let newTracker = Tracker(
+                id: tracker.id,
+                name: nameTextField.getText(),
+                color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP,
+                emoji: emojies[selectedEmoji?.row ?? 0],
+                schedule: nil,
+                isFixed: tracker.isFixed
+            )
+            delegate?.changeTracker(newTracker)
             navigationController?.dismiss(animated: true)
+        } else {
+            if let selectedCategoty {
+                var trackers = selectedCategoty.trackers
+                trackers.append(Tracker(id: UUID(), name: nameTextField.getText(), color: UIColor.colorFromString(colors[selectedColor?.row ?? 0]) ?? .whiteYP, emoji: emojies[selectedEmoji?.row ?? 0], schedule: nil, isFixed: false))
+                let category = TrackerCategory(id: selectedCategoty.id, name: selectedCategoty.name, trackers: trackers)
+                delegate?.addTracker(category)
+                navigationController?.dismiss(animated: true)
+            }
         }
     }
     

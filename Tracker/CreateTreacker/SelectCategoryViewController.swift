@@ -6,7 +6,7 @@ final class SelectCategoryViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = NSLocalizedString("categoty", comment: "Category")
+        label.text = NSLocalizedString("category", comment: "Category")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
