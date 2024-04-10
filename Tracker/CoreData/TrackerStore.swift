@@ -25,13 +25,24 @@ final class TrackerStore {
         let trackerCoreData = TrackerCoreData(context: context)
         try updateExistingTracker(trackerCoreData, with: tracker)
     }
-
+    
+    func updateTracker(_ tracker: Tracker) throws {
+        try updateExistingTracker(getTrackerById(tracker.id), with: tracker)
+    }
+    
+    func deleteTracker(_ tracker: Tracker) throws {
+        let trackerCoreData = try getTrackerById(tracker.id)
+        context.delete(trackerCoreData)
+        try context.save()
+    }
+    
     private func updateExistingTracker(_ trackerCoreData: TrackerCoreData, with tracker: Tracker) throws {
         trackerCoreData.id = tracker.id
         trackerCoreData.name = tracker.name
         trackerCoreData.color = UIColor.hexStringFromColor(tracker.color)
         trackerCoreData.emoji = tracker.emoji
         trackerCoreData.schedule = tracker.schedule as? NSObject
+        trackerCoreData.isFixed = tracker.isFixed
         try context.save()
     }
     
@@ -50,7 +61,8 @@ final class TrackerStore {
             name: name,
             color: color,
             emoji: emoji,
-            schedule: trackerCoreData.schedule as? [Days]
+            schedule: trackerCoreData.schedule as? [Days],
+            isFixed: trackerCoreData.isFixed
         )
     }
     

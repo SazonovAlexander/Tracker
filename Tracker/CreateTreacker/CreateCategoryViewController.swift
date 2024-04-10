@@ -6,7 +6,7 @@ final class CreateCategoryViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Новая категория"
+        label.text = NSLocalizedString("createCategory.title", comment: "Category creation screen title")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -17,7 +17,7 @@ final class CreateCategoryViewController: UIViewController {
     private lazy var createButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Готово", for: .normal)
+        button.setTitle(NSLocalizedString("ready", comment: "Ready buuton text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .grayYP
         button.layer.cornerRadius = 16
@@ -100,7 +100,7 @@ private extension CreateCategoryViewController {
             try viewModel?.addCategory(name: nameTextField.getText())
             dismiss(animated: true)
         } catch (let error) {
-            let alert = UIAlertController(title: "Что-то пошло не так", message: error.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("createCategory.error", comment: "Create category error"), message: error.localizedDescription, preferredStyle: .alert)
             present(alert, animated: true)
         }
     }

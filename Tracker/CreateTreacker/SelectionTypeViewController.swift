@@ -8,7 +8,7 @@ final class SelectionTypeViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Создание трекера"
+        label.text = NSLocalizedString("createTracker.title", comment: "Tracker creation screen title")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -17,7 +17,7 @@ final class SelectionTypeViewController: UIViewController {
     private lazy var habitButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .blackYP
-        button.setTitle("Привычка", for: .normal)
+        button.setTitle(NSLocalizedString("createTracker.habit", comment: "Habit on tracker creation screen"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.titleLabel?.textColor = .whiteYP
         button.layer.cornerRadius = 16
@@ -28,7 +28,7 @@ final class SelectionTypeViewController: UIViewController {
     private lazy var eventButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .blackYP
-        button.setTitle("Нерегулярные событие", for: .normal)
+        button.setTitle(NSLocalizedString("createTracker.event", comment: "Event on tracker creation screen"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.titleLabel?.textColor = .whiteYP
         button.layer.cornerRadius = 16

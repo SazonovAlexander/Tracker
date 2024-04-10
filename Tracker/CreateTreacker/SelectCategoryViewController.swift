@@ -6,7 +6,7 @@ final class SelectCategoryViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Категория"
+        label.text = NSLocalizedString("category", comment: "Category")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .blackYP
         return label
@@ -15,7 +15,7 @@ final class SelectCategoryViewController: UIViewController {
     private lazy var addCategoryButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Добавить категорию", for: .normal)
+        button.setTitle(NSLocalizedString("createCategory.button", comment: "Create category button text"), for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
         button.backgroundColor = .blackYP
         button.layer.cornerRadius = 16
@@ -34,7 +34,7 @@ final class SelectCategoryViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .medium)
         label.textColor = .blackYP
-        label.text = "Привычки и события можно\nобъединить по смыслу"
+        label.text = NSLocalizedString("createCategory.stub", comment: "Category creation screen stub")
         label.textAlignment = .center
         label.numberOfLines = 2
         return label
